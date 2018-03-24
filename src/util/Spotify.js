@@ -22,6 +22,8 @@ const Spotify = {
       headers: {
         Authorization: `Bearer ${accessToken}`
       }
+    }).then(response => {
+      return response.json();
     }).then(jsonResponse => {
       if (jsonResponse.tracks) {
         return jsonResponse.tracks.items.map(track => ({
