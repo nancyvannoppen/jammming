@@ -1,5 +1,5 @@
 const clientID = 'ccca97649be44be7aaa24c7287025385';
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'http://nvn-jammming.surge.sh/';
 
 let accessToken = '';
 
