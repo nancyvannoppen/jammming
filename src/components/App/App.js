@@ -42,31 +42,11 @@ class App extends Component {
     let trackURIs = this.state.playlistTracks.map(track => track.uri);
   }
 
-  search() {
-    Spotify.search(term).then(
-      (result) => {
-        this.setState({
-          searchResults: result,
-        });
-        if (result.length === 0) {
-          this.setMessage('No matching tracks found.');
-        }
-      },
-    ).catch(
-      (error) => {
-        this.setMessage(`${error}`);
-      },
-    );
-  }
-/*
-  search(searchTerm) {
-    console.log(searchTerm);
-    this.Spotify.search(searchTerm).then(searchResults => {
-      this.setState({
-        searchResults: searchResults
-      });
+  search(term) {
+    Spotify.search(term).then(result => {
+      this.setState({searchResults: result});
     });
-  }*/
+  }
 
   render() {
     return (
