@@ -11,7 +11,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      searchTerm: '',
       searchResults: [],
       playlistName: 'New Playlist',
       playlistTracks: []
@@ -43,17 +42,10 @@ class App extends Component {
     let trackURIs = this.state.playlistTracks.map(track => track.uri);
   }
 
-  setSearchTerm(term) {
-    this.setState({
-      searchTerm: term,
-    });
-  }
-
   search() {
-    Spotify.search(this.state.searchTerm).then(
+    Spotify.search(term).then(
       (result) => {
         this.setState({
-          searchTerm: '',
           searchResults: result,
         });
         if (result.length === 0) {
@@ -81,7 +73,7 @@ class App extends Component {
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <SearchBar term={this.state.searchTerm} onTermChange={this.setSearchTerm} onSearch={this.search}/>
+          <SearchBar onSearch={this.search}/>
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
